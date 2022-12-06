@@ -1,0 +1,12 @@
+# Exclude all top-level hidden directories by convention
+/.*
+
+/__tests__/
+/assets/
+/babel.config.js
+/coverage/
+/jest.config.ts
+/npm-debug.log
+/rollup.config.ts
+/src/
+/tsconfig*

@@ -1,0 +1,45 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-props-no-spreading": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.lib.json"
+      }
+    },
+    {
+      "files": ["jest.config.ts", "rollup.config.ts", "*.test.ts"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      }
+    }
+  ]
+}

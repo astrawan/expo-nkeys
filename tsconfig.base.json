@@ -1,0 +1,10 @@
+{
+  "extends": "expo-module-scripts/tsconfig.base",
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "ESNext",
+    "outDir": "lib",
+    "resolveJsonModule": true
+  },
+  "exclude": ["lib", "node_modules"]
+}

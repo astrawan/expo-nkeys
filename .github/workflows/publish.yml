@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: publish
+
+on:
+  push:
+    tags:
+      - "*"
+  pull_request:
+    branches: [main]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+      - name: test
+        run: npm test
+      - name: publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
