@@ -77,12 +77,8 @@ user.clear();
 priv.clear();
 ```
 
-## Demo
+## Example
 
-![Demo Application](assets/demo-ios.png "Demo")
+Here is a screenshot of the [sample application](https://github.com/astrawan/expo-nkeys-demo):
 
-![Scan the following QR code with an iOS device to open it in Expo Go or a development build.](https://qr.expo.dev/eas-update?updateId=8288e9a8-f81f-47d0-b4ee-0aa0e38c529d&appScheme=exp&host=u.expo.dev "Expo Go iOS")
-
-![Scan the following QR code with an Android device to open it in Expo Go or a development build.](https://qr.expo.dev/eas-update?updateId=3fc60764-4749-4328-bbad-23ccc5a18277&appScheme=exp&host=u.expo.dev "Expo Go Android")
-
-The [repository is here](https://github.com/astrawan/expo-nkeys-demo)
+![Screenshot of NativeBase](https://raw.githubusercontent.com/astrawan/expo-nkeys-demo/master/assets/demo.png)

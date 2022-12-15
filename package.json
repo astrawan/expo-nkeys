@@ -1,6 +1,6 @@
 {
   "name": "expo-nkeys",
-  "version": "1.0.3-beta.4",
+  "version": "1.0.3-beta.5",
   "description": "A wrapper for nkeys.js for Expo/React Native",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
