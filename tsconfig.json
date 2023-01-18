@@ -1,8 +1,16 @@
 {
-  "extends": "./tsconfig.base.json",
-  "include": [
-    "jest.config.ts",
-    "rollup.config.ts",
-    "**/*.test.ts"
-  ]
+  "extends": "expo-module-scripts/tsconfig.base",
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "esnext",
+    "outDir": "lib",
+    "resolveJsonModule": true,
+    "types": ["node", "jest"]
+  },
+  "exclude": ["lib", "node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }

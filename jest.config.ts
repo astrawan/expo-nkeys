@@ -11,6 +11,7 @@ const untranspiledModulePatterns = [
   '@expo(nent)?/.*',
   '@expo-google-fonts/.*',
   'react-navigation',
+  '@react-native/.*',
   '@react-navigation/.*',
   '@unimodules/.*',
   'unimodules',
@@ -20,13 +21,26 @@ const untranspiledModulePatterns = [
 ];
 
 const config: Config.InitialOptions = {
-  // preset: "jest-expo",
+  coverageReporters: ['json', 'json-summary'],
+  projects: [
+    {
+      preset: 'jest-expo/android',
+    },
+    {
+      preset: 'jest-expo/ios',
+    },
+    {
+      preset: 'jest-expo/web',
+    },
+  ],
+  testMatch: [
+    '**/__tests__/**/*[.-]test.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)',
+  ],
   transformIgnorePatterns: [
     `node_modules/(?!${untranspiledModulePatterns.join('|')})`,
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
-  projects: [{ preset: 'jest-expo/node' }, { preset: 'jest-expo/web' }],
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };
 
 export default config;

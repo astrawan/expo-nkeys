@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: test
+
+on:
+  workflow_call:
+
+jobs:
+  shared-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: generate initial coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        if: github.ref_name == 'main'
+        with:
+          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
+          gistID: 535f6d27df49d77c88dafc2e0e3d45b8
+          filename: expo-nkeys_main_coverage.json
+          label: coverage
+          message: 0%
+          color: red
+          namedLogo: Jest
+          logoColor: white
+
+      - name: generate initial coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        if: github.ref_name != 'main'
+        with:
+          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
+          gistID: 8efd27d89204dcd585d6796be071ba43
+          filename: expo-nkeys_dev_coverage.json
+          label: coverage
+          message: 0%
+          color: red
+          namedLogo: Jest
+          logoColor: white
+
+      - name: test
+        run: npm test -- --coverage
+
+      - name: process coverage results
+        run: |
+          echo "BADGE_MSG_COVERAGE=$(npx ts-node ./scripts/cov-badge-helper.ts ./coverage/coverage-summary.json | awk 'BEGIN {FS=";"}{print $1}')" >> $GITHUB_ENV && \
+            echo "BADGE_COLOR_COVERAGE=$(npx ts-node ./scripts/cov-badge-helper.ts ./coverage/coverage-summary.json | awk 'BEGIN {FS=";"}{print $2}' )" >> $GITHUB_ENV
+
+      - name: generate coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        if: github.ref_name == 'main'
+        with:
+          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
+          gistID: 535f6d27df49d77c88dafc2e0e3d45b8
+          filename: expo-nkeys_main_coverage.json
+          label: coverage
+          message: ${{ env.BADGE_MSG_COVERAGE }}%
+          color: ${{ env.BADGE_COLOR_COVERAGE }}
+          namedLogo: Jest
+          logoColor: white
+
+      - name: generate coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        if: github.ref_name != 'main'
+        with:
+          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
+          gistID: 8efd27d89204dcd585d6796be071ba43
+          filename: expo-nkeys_dev_coverage.json
+          label: coverage
+          message: ${{ env.BADGE_MSG_COVERAGE }}%
+          color: ${{ env.BADGE_COLOR_COVERAGE }}
+          namedLogo: Jest
+          logoColor: white

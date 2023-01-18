@@ -27,11 +27,14 @@
         },
         "ecmaVersion": 2021,
         "sourceType": "module",
-        "project": "./tsconfig.lib.json"
+        "project": "./tsconfig.json"
       }
     },
     {
-      "files": ["jest.config.ts", "rollup.config.ts", "*.test.ts"],
+      "files": [
+        "*.config.ts",
+        "__test__/**/*.ts"
+      ],
       "parserOptions": {
         "ecmaFeatures": {
           "jsx": true
@@ -39,6 +42,26 @@
         "ecmaVersion": 2021,
         "sourceType": "module",
         "project": "./tsconfig.json"
+      }
+    },
+    {
+      "files": [
+        "scripts/**/*.ts"
+      ],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/dot-notation": "warn",
+        "dot-notation": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-import-module-exports": "off",
+        "no-console": "off"
       }
     }
   ]

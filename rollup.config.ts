@@ -18,7 +18,7 @@ const configs: RollupOptions[] = [
         sourcemap: 'inline',
       },
     ],
-    plugins: [typescript({ tsconfig: './tsconfig.lib.json' })],
+    plugins: [typescript({ tsconfig: './tsconfig.rollup.json' })],
     external: [...Object.keys(pkg.peerDependencies || {})],
   },
 ];
