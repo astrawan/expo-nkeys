@@ -1,7 +1,7 @@
 {
   "name": "expo-nkeys",
-  "version": "1.0.3-beta.5",
-  "description": "A wrapper for nkeys.js for Expo/React Native",
+  "version": "1.0.4",
+  "description": "A Expo/React Native wrapper for nkeys.js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -14,6 +14,8 @@
   },
   "keywords": [
     "nats",
+    "nkeys",
+    "nkeys.js",
     "ed25519",
     "expo",
     "javascript",
@@ -47,6 +49,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "expo-module-scripts": "^3.0.4",
+    "husky": "^8.0.0",
     "jest": "^26.6.3",
     "jest-expo": "^47.0.1",
     "prettier": "^2.8.0",
@@ -56,8 +59,7 @@
     "react-native-web": "~0.18.9",
     "rollup": "^3.6.0",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.3",
-    "husky": "^8.0.0"
+    "typescript": "^4.9.x"
   },
   "peerDependencies": {
     "buffer": "*",

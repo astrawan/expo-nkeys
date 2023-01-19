@@ -1,17 +1,17 @@
 <!-- -*- mode: markdown -*- -->
-<!-- template-checksum: bb1b3199aedd25ab4aeedbe953baf22e48ad6bde -->
+<!-- template-checksum: 9099abc5b63eeda550e2381f4e791d327aaf6835 -->
 <!-- branch: main -->
 # expo-nkeys
 
 
 A Expo/React Native wrapper for [nkeys.js](https://github.com/nats-io/nkeys.js) library.
 
-![license-badge](https://img.shields.io/github/license/astrawan/expo-nkeys?logo=Open%20Source%20Initiative&logoColor=white)
-![ci-badge](https://img.shields.io/github/actions/workflow/status/astrawan/expo-nkeys/test.yml?label=CI&logo=GitHub&branch=main)
-![coverage-badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/astrawan/535f6d27df49d77c88dafc2e0e3d45b8/raw/expo-nkeys_main_coverage.json)
-![published-version-badge](https://img.shields.io/npm/v/expo-nkeys?logo=npm&logoColor=white)
-![vulnerabilities-badge](https://img.shields.io/snyk/vulnerabilities/npm/expo-nkeys?logo=Snyk)
-![dependencies-out-of-date-badge](https://img.shields.io/librariesio/github/astrawan/expo-nkeys?logo=Libraries.io&logoColor=white)
+[![license-badge](https://img.shields.io/github/license/astrawan/expo-nkeys?logo=Open%20Source%20Initiative)](https://github.com/astrawan/expo-nkeys/blob/main/LICENSE)
+[![ci-badge](https://img.shields.io/github/actions/workflow/status/astrawan/expo-nkeys/test.yml?label=CI&logo=GitHub&branch=main)](https://github.com/astrawan/expo-nkeys/actions?query=branch%3Amain)
+[![code-quality-badge](https://img.shields.io/codacy/grade/b4756ea6a53346db8cfaf9e27111e72c/main?logo=Codacy)](https://www.codacy.com/gh/astrawan/expo-nkeys/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=astrawan/expo-nkeys&amp;utm_campaign=Badge_Grade)
+[![coverage-badge](https://img.shields.io/codacy/coverage/b4756ea6a53346db8cfaf9e27111e72c/main?logo=Jest)](https://www.codacy.com/gh/astrawan/expo-nkeys/dashboard?utm_source=github.com&utm_medium=referral&utm_content=astrawan/expo-nkeys&utm_campaign=Badge_Coverage)
+[![published-version-badge](https://img.shields.io/npm/v/expo-nkeys?logo=npm)](https://www.npmjs.com/package/expo-nkeys)
+[![vulnerabilities-badge](https://img.shields.io/snyk/vulnerabilities/npm/expo-nkeys?logo=Snyk)](https://snyk.io/advisor/npm-package/expo-nkeys)
 
 ## Installation
 On expo, and react native project you can get a build from npm:

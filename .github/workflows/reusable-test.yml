@@ -5,10 +5,17 @@ on:
   workflow_call:
 
 jobs:
-  shared-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
+      - name: check for CODACY_PROJECT_TOKEN
+        run: |
+            if [ -z "${{ secrets.CODACY_PROJECT_TOKEN }}" ]; then
+              echo "You must provide an CODACY_PROJECT_TOKEN secret linked to this project. Learn more: https://docs.codacy.com/coverage-reporter/alternative-ways-of-running-coverage-reporter"
+              exit 1
+            fi
+
       - name: checkout
         uses: actions/checkout@v3
         with:
@@ -21,62 +28,15 @@ jobs:
 
       - run: npm ci
 
-      - name: generate initial coverage badge
-        uses: schneegans/dynamic-badges-action@v1.6.0
-        if: github.ref_name == 'main'
-        with:
-          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
-          gistID: 535f6d27df49d77c88dafc2e0e3d45b8
-          filename: expo-nkeys_main_coverage.json
-          label: coverage
-          message: 0%
-          color: red
-          namedLogo: Jest
-          logoColor: white
-
-      - name: generate initial coverage badge
-        uses: schneegans/dynamic-badges-action@v1.6.0
-        if: github.ref_name != 'main'
-        with:
-          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
-          gistID: 8efd27d89204dcd585d6796be071ba43
-          filename: expo-nkeys_dev_coverage.json
-          label: coverage
-          message: 0%
-          color: red
-          namedLogo: Jest
-          logoColor: white
-
       - name: test
         run: npm test -- --coverage
 
-      - name: process coverage results
-        run: |
-          echo "BADGE_MSG_COVERAGE=$(npx ts-node ./scripts/cov-badge-helper.ts ./coverage/coverage-summary.json | awk 'BEGIN {FS=";"}{print $1}')" >> $GITHUB_ENV && \
-            echo "BADGE_COLOR_COVERAGE=$(npx ts-node ./scripts/cov-badge-helper.ts ./coverage/coverage-summary.json | awk 'BEGIN {FS=";"}{print $2}' )" >> $GITHUB_ENV
-
-      - name: generate coverage badge
-        uses: schneegans/dynamic-badges-action@v1.6.0
-        if: github.ref_name == 'main'
+      - name: codacy coverage reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
         with:
-          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
-          gistID: 535f6d27df49d77c88dafc2e0e3d45b8
-          filename: expo-nkeys_main_coverage.json
-          label: coverage
-          message: ${{ env.BADGE_MSG_COVERAGE }}%
-          color: ${{ env.BADGE_COLOR_COVERAGE }}
-          namedLogo: Jest
-          logoColor: white
-
-      - name: generate coverage badge
-        uses: schneegans/dynamic-badges-action@v1.6.0
-        if: github.ref_name != 'main'
-        with:
-          auth: ${{ secrets.DYNAMIC_BADGES_TOKEN }}
-          gistID: 8efd27d89204dcd585d6796be071ba43
-          filename: expo-nkeys_dev_coverage.json
-          label: coverage
-          message: ${{ env.BADGE_MSG_COVERAGE }}%
-          color: ${{ env.BADGE_COLOR_COVERAGE }}
-          namedLogo: Jest
-          logoColor: white
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: ./coverage/lcov.info
+          # or a comma-separated list for multiple reports
+          # coverage-reports: <PATH_TO_REPORT>, <PATH_TO_REPORT>
